@@ -19,6 +19,26 @@ localhost/categories/{id}
 ```
 ### Table: Recepts
 ```
-localhost/activities/
-localhost/activities/{id}
+localhost/recepts/
+localhost/recepts/{id}
+```
+### Table: ReceptsSteps
+```
+localhost/receptssteps/
+localhost/receptssteps/{id}
+```
+### Table: ReceptsIngredients
+```
+localhost/receptsingredients/
+localhost/receptsingredients/{id}
+```
+### Table: WeightUsers
+```
+localhost/weightusers/
+localhost/weightusers/{id}
+```
+### Table: Unit
+```
+localhost/units/
+localhost/units/{id}
 ```
