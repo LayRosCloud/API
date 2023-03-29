@@ -14,20 +14,22 @@ class GetController extends TemplateController
      var $listGetters = [];
 
     protected function init(){
-        $this->listGetters['users'] = new UserGetter();
-        $this->listGetters['units'] = new UnitGetter();
-        $this->listGetters['recepts'] = new ReceptsGetter();
-        $this->listGetters['categories'] = new CategoryGetter();
-        $this->listGetters['activities'] = new ActivityGetter();
-        $this->listGetters['receptssteps'] = new ReceptsStepsGetter();
-        $this->listGetters['receptsingredients'] = new ReceptsIngredientGetter();
-        $this->listGetters['weightusers'] = new WeightUserGetter();
+        $this->listGetters[USERS] = new UserGetter();
+        $this->listGetters[UNITS] = new UnitGetter();
+        $this->listGetters[RECEPTS] = new ReceptsGetter();
+        $this->listGetters[CATEGORIES] = new CategoryGetter();
+        $this->listGetters[ACTIVITIES] = new ActivityGetter();
+        $this->listGetters[RECEPTS_STEPS] = new ReceptsStepsGetter();
+        $this->listGetters[RECEPTS_INGREDIENTS] = new ReceptsIngredientGetter();
+        $this->listGetters[WEIGHT_USERS] = new WeightUserGetter();
     }
     protected function run($type, $connection, $data){
-        if(($getter = $this->listGetters[$type]) instanceof Getter){
+        if(($getter = $this->listGetters[$type])){
             $getter->get($connection, $data);
         }
-
+        else{
+            echoNotFound(404, 'Table $type is not found');
+        }
     }
 
 }

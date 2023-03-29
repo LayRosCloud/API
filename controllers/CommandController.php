@@ -4,9 +4,9 @@ class CommandController
 {
     var $listCommand = [];
 
-    public function construct($method, $type, $connection, $id){
+    public function construct($method, $type, $connection, $id, $data){
         $this->init();
-        $this->push($method, $type, $connection, $id);
+        $this->push($method, $type, $connection, $id, $data);
     }
 
     protected function init(){
@@ -16,8 +16,14 @@ class CommandController
         $this->listCommand['DELETE'] = new DeleteController();
     }
 
-    protected function push($method, $type, $connection, $id){
-        if($this->listCommand[$method]){
+    protected function push($method, $type, $connection, $id, $data){
+        if($method == 'POST'){
+            $this->listCommand[$method]->start($type, $connection, $data);
+        }
+        elseif($method == 'PUT'){
+            $this->listCommand[$method]->start($type, $connection, $id, $data);
+        }
+        elseif($this->listCommand[$method]){
             $this->listCommand[$method]->start($type, $connection, $id);
         }
         else{
